@@ -9,7 +9,6 @@ dependencies:
   - commerce:commerce
   - commerce:commerce_order
   - commerce:commerce_product
-  - migrate_drupal_d8:migrate_drupal_d8
 test_dependencies:
   - coder:coder
   - commerce_shipping:commerce_shipping

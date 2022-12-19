@@ -15,7 +15,6 @@
     "ext-soap": "*",
     "consolibyte/quickbooks": "dev-master",
     "drupal/commerce": "~2",
-    "drupal/migrate_drupal_d8": "dev-1.x#e26f542fc6d29635ce7b5a1266ab0129b4563939"
   },
   "require-dev": {
     "drupal/coder": "^8",
