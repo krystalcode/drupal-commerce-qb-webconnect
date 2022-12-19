@@ -1,0 +1,14 @@
+exportables:
+  products: true
+  order_type: sales_receipts
+accounts:
+  main_income_account: Sales
+  cogs_account: 'Cost of Goods Sold'
+  assets_account: 'Inventory Asset'
+adjustments:
+  discount_service: 'Discount'
+  shipping_service: 'Freight'
+id_prefixes:
+  po_number_prefix: ''
+  payment_prefix: ''
+qwc_owner_id: b303d266-2429-4314-bd77-1259a3d163be

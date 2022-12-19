@@ -1,0 +1,23 @@
+id: qb_webconnect_payment
+label: QB Webconnect Payment
+migration_tags:
+  - QB Webconnect
+source:
+  plugin: qb_webconnect_completed_payment
+  entity_type: commerce_payment
+  static:
+    send_callback: preparePaymentExport
+    receive_callback: updateIdentifier
+  # Change this value to another one if your database is not named 'default'
+  # in settings.php.
+  key: default
+process:
+  order_list_id:
+    plugin: migration_lookup
+    migration: qb_webconnect_order
+    source: order_id
+destination:
+  plugin: commerce_qb_webconnect
+migration_dependencies:
+  required:
+    - qb_webconnect_order

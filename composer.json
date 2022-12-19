@@ -1,0 +1,30 @@
+{
+  "name": "drupal/commerce_qb_webconnect",
+  "type": "drupal-module",
+  "description": "Integration for Drupal to Quickbooks Enterprise editions via SOAP service",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/commerce_qb_webconnect",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/commerce_qb_webconnect",
+    "source": "http://cgit.drupalcode.org/commerce_qb_webconnect"
+  },
+  "require": {
+    "php": "^7",
+    "ext-soap": "*",
+    "consolibyte/quickbooks": "dev-master",
+    "drupal/commerce": "~2",
+    "drupal/migrate_drupal_d8": "@dev"
+  },
+  "require-dev": {
+    "drupal/coder": "^8",
+    "drupal/commerce_shipping": "^2"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ]
+}

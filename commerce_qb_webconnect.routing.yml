@@ -1,0 +1,28 @@
+
+commerce_qb_webconnect.quickbooks_admin_form:
+  path: '/admin/commerce/config/commerce_qb_webconnect/quickbook_sadmin'
+  defaults:
+    _form: '\Drupal\commerce_qb_webconnect\Form\QuickbooksAdminForm'
+    _title: 'Quickbooks Configuration'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+commerce_qb_webconnect.quickbooks_qwc_form:
+  path: '/admin/commerce/config/commerce_qb_webconnect/qwc'
+  defaults:
+    _form: '\Drupal\commerce_qb_webconnect\Form\QuickbooksQWCForm'
+    _title: 'Quickbooks QWC Export'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+commerce_qb_webconnect.quickbooks_soap_controller:
+  path: '/qb_soap'
+  defaults:
+    _controller: '\Drupal\commerce_qb_webconnect\SoapBundle\SoapServiceController::handleRequest'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,4 @@
+'access quickbooks soap service':
+  title: 'Quickbooks SOAP Service Access'
+  description: 'Grants a privileged user access to SOAP service calls that return product, user, and order information to a requesting SOAP client.'
+  restrict access: true

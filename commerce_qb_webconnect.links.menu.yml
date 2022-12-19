@@ -1,0 +1,14 @@
+commerce_qb_webconnect.quickbooks_admin_form:
+  title: 'Quickbooks Webconnect Settings'
+  route_name: commerce_qb_webconnect.quickbooks_admin_form
+  description: 'Commerce Quickbooks webconnect settings form'
+  parent: commerce.configuration
+  weight: 99
+
+commerce_qb_webconnect.quickbooks_qwc_form:
+  title: 'Quickbooks QWC Generator'
+  route_name: commerce_qb_webconnect.quickbooks_qwc_form
+  description: 'Commerce Quickbooks QWC generation form'
+  parent: commerce_qb_webconnect.quickbooks_admin_form
+  weight: 99
+

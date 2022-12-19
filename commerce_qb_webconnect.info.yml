@@ -1,0 +1,17 @@
+name: Commerce Quickbooks Enterprise
+type: module
+description: Drupal to Quickbooks Enterprise editions via SOAP service
+core: 8.x
+package: Quickbooks
+
+dependencies:
+  - drupal:migrate
+  - commerce:commerce
+  - commerce:commerce_order
+  - commerce:commerce_product
+  - migrate_drupal_d8:migrate_drupal_d8
+test_dependencies:
+  - coder:coder
+  - commerce_shipping:commerce_shipping
+
+configure: commerce_qb_webconnect.quickbooks_admin_form

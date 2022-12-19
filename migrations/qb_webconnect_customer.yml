@@ -1,0 +1,23 @@
+id: qb_webconnect_customer
+label: QB Webconnect Customer
+migration_tags:
+  - QB Webconnect
+source:
+  plugin: d8_entity
+  entity_type: profile
+  bundle: customer
+  static:
+    send_callback: prepareCustomerExport
+    receive_callback: updateIdentifier
+  # Change this value to another one if your database is not named 'default'
+  # in settings.php.
+  key: default
+process:
+  address:
+    # We want to skip profiles with missing addresses. It make no sense to
+    # export a profile that does not have them.
+    plugin: skip_on_empty
+    method: row
+    source: address
+destination:
+  plugin: commerce_qb_webconnect

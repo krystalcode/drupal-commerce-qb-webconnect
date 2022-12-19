@@ -1,0 +1,23 @@
+services:
+  commerce_qb_webconnect.qbxml_parser:
+    class: Drupal\commerce_qb_webconnect\SoapBundle\Services\QBXMLParser
+    arguments: ['@logger.factory']
+  commerce_qb_webconnect.soap_session_manager:
+    class: Drupal\commerce_qb_webconnect\SoapBundle\Services\SoapSessionManager
+    arguments: ['@state']
+  commerce_qb_webconnect.validator:
+    class: Drupal\commerce_qb_webconnect\SoapBundle\Services\Validator
+  commerce_qb_webconnect.soap_service:
+    class: Drupal\commerce_qb_webconnect\SoapBundle\Services\SoapService
+    arguments:
+      - '@plugin.manager.migration'
+      - '@plugin.manager.migrate.id_map'
+      - '@user.auth'
+      - '@commerce_qb_webconnect.soap_session_manager'
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@state'
+  commerce_qb_webconnect.migrate_subscriber:
+    class: Drupal\commerce_qb_webconnect\EventSubscriber\MigrateSubscriber
+    tags:
+      - { name: event_subscriber }

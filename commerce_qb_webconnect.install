@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for commerce quickbooks enterprise.
+ */
+
+use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\StreamWrapper\StreamWrapperInterface;
+use Drupal\user\Entity\Role;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_install().
+ *
+ * Create the "Quickbooks User" user role and attach permissions to it.
+ */
+function commerce_qb_webconnect_install() {
+  $quickbooks_role = [
+    'id' => 'quickbooks_user',
+    'label' => 'Quickbooks User',
+  ];
+
+  // Create the role.
+  $role = Role::create($quickbooks_role);
+  $role->save();
+
+  // Load the role and grant permissions.
+  $role = Role::load($quickbooks_role['id']);
+  $role->grantPermission('access quickbooks soap service');
+  $role->save();
+
+  // Create a new user with the quickbooks_user role.
+  $user = User::create();
+  $user->enforceIsNew();
+  $user->setUsername('quickbooks_user');
+  $user->addrole($role->id());
+  $user->setPassword(user_password(21));
+  drupal_set_message(t('@username was created with password of @password', ['@username' => $user->getUsername(), '@password' => $user->getPassword()]));
+  $user->activate();
+
+  // Try to save the user.  If it failed, inform the admin that they will have
+  // to manually create a user with the quickbooks_user role.
+  try {
+    $user->save();
+  }
+  catch (EntityStorageException $e) {
+    drupal_set_message(t('A Quickbooks User account was unable to be created.  You will have to manually create a new user with the "Quickbooks User" role.'), 'error');
+  }
+
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Deletes our quickbooks_user and role.
+ */
+function commerce_qb_webconnect_uninstall() {
+  if ($role = Role::load('quickbooks_user')) {
+    $role->delete();
+  }
+  if ($user = user_load_by_name('quickbooks_user')) {
+    $user->delete();
+
+  }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function commerce_qb_webconnect_requirements() {
+  // Check private file upload.
+  $stream_wrappers = \Drupal::service('stream_wrapper_manager')->getNames(StreamWrapperInterface::WRITE_VISIBLE);
+  $requirements['cqe_file_private'] = [
+    'title' => ('Commerce Quickbooks Enterprise: Private files'),
+    'value' => t('Private file system is set.'),
+    'severity' => REQUIREMENT_OK,
+  ];
+  if (!isset($stream_wrappers['private'])) {
+    $requirements['cqe_file_private']['value'] = t('Private file system is not set.');
+    $requirements['cqe_file_private']['description'] = t('This may be changed in <a href="https://www.drupal.org/docs/8/core/modules/file/overview#private-file-system">settings.php</a>.');
+    $requirements['cqe_file_private']['severity'] = REQUIREMENT_ERROR;
+  }
+  return $requirements;
+}

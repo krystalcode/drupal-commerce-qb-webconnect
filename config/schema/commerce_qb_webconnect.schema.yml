@@ -1,0 +1,51 @@
+commerce_qb_webconnect.quickbooks_admin:
+  type: config_object
+  label: 'Commerce quickbooks enterprise settings'
+  mapping:
+    exportables:
+      type: mapping
+      label: 'Exportables'
+      mapping:
+        products:
+          type: boolean
+          label: 'Export products'
+        order_type:
+          type: string
+          label: 'Order type'
+    accounts:
+      type: mapping
+      label: 'Accounts'
+      mapping:
+        main_income_account:
+          type: string
+          label: 'Main income account'
+        cogs_account:
+          type: string
+          label: 'Cost of Goods Sold account'
+        assets_account:
+          type: string
+          label: 'Assets account'
+    adjustments:
+          type: mapping
+          label: 'Adjustments'
+          mapping:
+            discount_service:
+              type: string
+              label: 'Main discount / promotion service'
+            shipping_service:
+              type: string
+              label: 'Main shipping service'
+    id_prefixes:
+      type: mapping
+      label: 'ID prefixes'
+      mapping:
+        po_number_prefix:
+          type: string
+          label: 'Purchase order number prefix'
+        payment_prefix:
+          type: string
+          label: 'Payment prefix'
+    qwc_owner_id:
+      type: string
+      label: 'Quickbooks web connect owner id'
+

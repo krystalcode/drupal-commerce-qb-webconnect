@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains commerce_qb_webconnect.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function commerce_qb_webconnect_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the commerce_qb_webconnect module.
+    case 'help.page.commerce_qb_webconnect':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal to Quickbooks Enterprise editions via Quickbooks Webconnect (SOAP)') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function commerce_qb_webconnect_migration_plugins_alter(array &$migrations) {
+  $exportables = \Drupal::service('config.factory')->get('commerce_qb_webconnect.quickbooks_admin')->get('exportables');
+
+  // Disable exporting payments if we aren't exporting as invoices.
+  if (isset($exportables['order_type'])) {
+    if ($exportables['order_type'] != 'invoices') {
+      unset($migrations['qb_webconnect_payment']);
+    }
+  }
+  else {
+    unset($migrations['qb_webconnect_order']);
+  }
+  // Disable product exports if they are not exportable.
+  if (empty($exportables['products'])) {
+    unset($migrations['qb_webconnect_product'], $migrations['qb_webconnect_product_variation']);
+  }
+
+}

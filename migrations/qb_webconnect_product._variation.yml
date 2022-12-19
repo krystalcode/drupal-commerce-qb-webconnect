@@ -1,0 +1,23 @@
+id: qb_webconnect_product_variation
+label: QB Webconnect Product Variation
+migration_tags:
+  - QB Webconnect
+source:
+  plugin: d8_entity
+  entity_type: commerce_product_variation
+  static:
+    send_callback: prepareProductVariationExport
+    receive_callback: updateIdentifier
+  # Change this value to another one if your database is not named 'default'
+  # in settings.php.
+  key: default
+process:
+  product_list_id:
+    plugin: migration_lookup
+    migration: qb_webconnect_product
+    source: product_id
+destination:
+  plugin: commerce_qb_webconnect
+migration_dependencies:
+  required:
+    - qb_webconnect_product

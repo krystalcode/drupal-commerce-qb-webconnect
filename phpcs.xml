@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="commerce_qb_webconnect">
+  <description>PHP CodeSniffer configuration.</description>
+  <file>.</file>
+  <arg name="extensions" value="css,inc,install,module,php,profile,test,theme"/>
+  <!--Exclude third party code.-->
+  <exclude-pattern>./vendor/*</exclude-pattern>
+  <!--Run Drupal standards.-->
+  <rule ref="Drupal.Array"/>
+  <rule ref="Drupal.CSS"/>
+  <rule ref="Drupal.Classes"/>
+  <rule ref="Drupal.Commenting"/>
+  <rule ref="Drupal.ControlStructures"/>
+  <rule ref="Drupal.Files"/>
+  <rule ref="Drupal.Formatting"/>
+  <rule ref="Drupal.Functions"/>
+  <rule ref="Drupal.InfoFiles"/>
+  <rule ref="Drupal.NamingConventions">
+    <exclude name="Drupal.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
+  </rule>
+  <rule ref="Drupal.Strings"/>
+  <rule ref="Drupal.WhiteSpace"/>
+
+  <!--Run external standards.-->
+  <rule ref="Generic.Files.LineEndings"/>
+  <rule ref="Generic.Formatting.SpaceAfterCast"/>
+  <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+  <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+  <rule ref="Generic.PHP.DeprecatedFunctions"/>
+  <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+  <rule ref="Generic.PHP.LowerCaseKeyword"/>
+  <rule ref="Generic.PHP.UpperCaseConstant"/>
+  <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+
+  <rule ref="MySource.Debug.DebugCode"/>
+
+  <rule ref="PSR2.Classes.PropertyDeclaration"/>
+
+  <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+  <rule ref="Squiz.CSS.ClassDefinitionOpeningBraceSpace"/>
+  <rule ref="Squiz.CSS.ColonSpacing"/>
+  <rule ref="Squiz.CSS.DisallowMultipleStyleDefinitions"/>
+  <rule ref="Squiz.CSS.EmptyClassDefinition"/>
+  <rule ref="Squiz.CSS.EmptyStyleDefinition"/>
+  <rule ref="Squiz.CSS.MissingColon"/>
+  <rule ref="Squiz.CSS.SemicolonSpacing"/>
+  <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+  <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+  <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
+  <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+  <rule ref="Squiz.PHP.NonExecutableCode"/>
+  <rule ref="Squiz.Scope.MethodScope"/>
+  <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+
+  <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+  <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+  <rule ref="Zend.Files.ClosingTag"/>
+
+</ruleset>
